@@ -8,12 +8,6 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 # General UI/UX                                                               #
 ###############################################################################
 
-# Set computer name (as done via System Preferences → Sharing)
-sudo scutil --set ComputerName "Blade"
-sudo scutil --set HostName "Blade"
-sudo scutil --set LocalHostName "Blade"
-sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "Blade"
-
 # Set standby delay to 24 hours (default is 1 hour)
 sudo pmset -a standbydelay 86400
 
@@ -130,10 +124,10 @@ defaults write NSGlobalDomain AppleMeasurementUnits -string "Centimeters"
 defaults write NSGlobalDomain AppleMetricUnits -bool true
 
 # Set the timezone; see `sudo systemsetup -listtimezones` for other values
-sudo systemsetup -settimezone "Europe/Amsterdam" > /dev/null
+#sudo systemsetup -settimezone "Europe/Amsterdam" > /dev/null
 
 # Disable auto-correct
-defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
+#defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
 
 # Use all F1, F2, etc. keys as standard function keys (requires restart)
 defaults write -g com.apple.keyboard.fnState -bool true
@@ -143,8 +137,8 @@ defaults write -g com.apple.keyboard.fnState -bool true
 ###############################################################################
 
 # Require password 5 seconds after sleep or screen saver begins
-defaults write com.apple.screensaver askForPassword -int 1
-defaults write com.apple.screensaver askForPasswordDelay -int 5
+#defaults write com.apple.screensaver askForPassword -int 1
+#defaults write com.apple.screensaver askForPasswordDelay -int 5
 
 # Save screenshots to the desktop
 defaults write com.apple.screencapture location -string "$HOME/Desktop"
@@ -274,11 +268,11 @@ defaults write com.apple.dock wvous-tl-corner -int 0
 defaults write com.apple.dock wvous-tl-modifier -int 0
 
 # Top right screen corner
-defaults write com.apple.dock wvous-tr-corner -int 0
+defaults write com.apple.dock wvous-tr-corner -int 5
 defaults write com.apple.dock wvous-tr-modifier -int 0
 
 # Bottom left screen corner → Display to sleep
-defaults write com.apple.dock wvous-bl-corner -int 10
+defaults write com.apple.dock wvous-bl-corner -int 0
 defaults write com.apple.dock wvous-bl-modifier -int 0
 
 # Bottom right screen corner
@@ -315,35 +309,6 @@ defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebK
 
 # Add a context menu item for showing the Web Inspector in web views
 defaults write NSGlobalDomain WebKitDeveloperExtras -bool true
-
-###############################################################################
-# Mail                                                                        #
-###############################################################################
-
-# Display emails in threaded mode
-defaults write com.apple.mail DraftsViewerAttributes -dict-add "DisplayInThreadedMode" -string "yes"
-
-# Disable send and reply animations in Mail.app
-defaults write com.apple.mail DisableReplyAnimations -bool true
-defaults write com.apple.mail DisableSendAnimations -bool true
-
-# Copy email addresses as `foo@example.com` instead of `Foo Bar <foo@example.com>` in Mail.app
-defaults write com.apple.mail AddressesIncludeNameOnPasteboard -bool false
-
-# Disable inline attachments (just show the icons)
-defaults write com.apple.mail DisableInlineAttachmentViewing -bool true
-
-# Disable automatic spell checking
-defaults write com.apple.mail SpellCheckingBehavior -string "NoSpellCheckingEnabled"
-
-# Disable sound for incoming mail
-defaults write com.apple.mail MailSound -string ""
-
-# Disable sound for other mail actions
-defaults write com.apple.mail PlayMailSounds -bool false
-
-# Mark all messages as read when opening a conversation
-defaults write com.apple.mail ConversationViewMarkAllAsRead -bool true
 
 ###############################################################################
 # Spotlight                                                                   #
@@ -399,13 +364,6 @@ defaults write com.apple.terminal "Bell" -bool false
 defaults write com.apple.terminal "VisualBell" -bool false
 
 ###############################################################################
-# Time Machine                                                                #
-###############################################################################
-
-# Disable local Time Machine backups
-hash tmutil &> /dev/null && sudo tmutil disablelocal
-
-###############################################################################
 # Activity Monitor                                                            #
 ###############################################################################
 
@@ -432,12 +390,6 @@ defaults write com.apple.appstore WebKitDeveloperExtras -bool true
 # Enable Debug Menu in the Mac App Store
 defaults write com.apple.appstore ShowDebugMenu -bool true
 
-###############################################################################
-# SSD-specific tweaks                                                         #
-###############################################################################
-
-# Disable local Time Machine snapshots
-sudo tmutil disablelocal
 
 ###############################################################################
 # Kill affected applications                                                  #

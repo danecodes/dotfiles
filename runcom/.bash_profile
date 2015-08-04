@@ -13,31 +13,18 @@ elif [ -n "$BASH_VERSION" ]; then
 fi
 
 # OS
-
-if [ "$(uname -s)" = "Darwin" ]; then
-    OS="OSX"
-else
-    OS=$(uname -s)
-fi
+OS="OSX"
 
 # Resolve DOTFILES_DIR (assuming ~/.dotfiles on distros without readlink and/or $BASH_SOURCE/$0)
 
-READLINK=$(which greadlink || which readlink)
+#READLINK=$(which greadlink || which readlink)
 if $SHELL_BASH; then
     CURRENT_SCRIPT=$BASH_SOURCE
 else
     CURRENT_SCRIPT=$0
 fi
 
-if [[ -n $CURRENT_SCRIPT && -x "$READLINK" ]]; then
-    SCRIPT_PATH=$($READLINK -f "$CURRENT_SCRIPT")
-    DOTFILES_DIR=$(dirname "$(dirname "$SCRIPT_PATH")")
-elif [ -d "$HOME/.dotfiles" ]; then
-    DOTFILES_DIR="$HOME/.dotfiles"
-else
-    echo "Unable to find dotfiles, exiting."
-    return # `exit 1` would quit the shell itself
-fi
+DOTFILES_DIR="$HOME/.dotfiles"
 
 # Finally we can source the dotfiles (order matters)
 
@@ -45,11 +32,9 @@ for DOTFILE in "$DOTFILES_DIR"/system/.{function,function*,path,env,alias,comple
     [ -f "$DOTFILE" ] && . "$DOTFILE"
 done
 
-if [ "$OS" = "OSX" ]; then
-    for DOTFILE in "$DOTFILES_DIR"/system/.{env,alias,function}.osx; do
-        [ -f "$DOTFILE" ] && . "$DOTFILE"
-    done
-fi
+for DOTFILE in "$DOTFILES_DIR"/system/.{env,alias,function}.osx; do
+    [ -f "$DOTFILE" ] && . "$DOTFILE"
+done
 
 if $SHELL_BASH; then
     for DOTFILE in "$DOTFILES_DIR"/system/.*.bash; do
@@ -65,7 +50,7 @@ fi
 
 # Set LSCOLORS
 
-eval "$(dircolors "$DOTFILES_DIR"/system/.dir_colors)"
+#eval "$(dircolors "$DOTFILES_DIR"/system/.dir_colors)"
 
 # Hook for extra/custom stuff
 
