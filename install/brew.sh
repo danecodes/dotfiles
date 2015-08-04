@@ -11,11 +11,9 @@ apps=(
     coreutils
     dockutil
     ffmpeg
-    fsad
     gifsicle
     git
     gnu-sed --default-names
-    grep --default-names
     hub
     imagemagick
     jq
