@@ -5,15 +5,20 @@ apps=(
     dropbox
     firefox
     firefox-nightly
+    firefoxdeveloperedition
     flux
     glimmerblocker
     google-chrome
     google-chrome-canary
     google-drive
+    gyazo
+    imagealpha
+    imageoptim
     iterm2
     kaleidoscope
     mou
     opera
+    rescuetime
     screenflow
     sourcetree
     spotify
