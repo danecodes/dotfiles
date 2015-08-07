@@ -36,6 +36,11 @@ for DOTFILE in "$DOTFILES_DIR"/system/.{env,alias,function}.osx; do
     [ -f "$DOTFILE" ] && . "$DOTFILE"
 done
 
+#custom files for hulu
+for DOTFILE in "$DOTFILES_DIR"/system/.{env,alias,function}.hulu; do
+    [ -f "$DOTFILE" ] && . "$DOTFILE"
+done
+
 if $SHELL_BASH; then
     for DOTFILE in "$DOTFILES_DIR"/system/.*.bash; do
         [ -f "$DOTFILE" ] && . "$DOTFILE"

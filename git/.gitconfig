@@ -7,7 +7,7 @@
 
 [core]
     excludesfile = ~/.gitignore_global
-    editor = vim
+    editor = atom --wait
     filemode = false
     trustctime = false
 
@@ -82,9 +82,12 @@
     tool = Kaleidoscope
     conflictstyle = diff3
     defaultToUpstream = true
+	ff = false
 [mergetool "Kaleidoscope"]
     cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
     trustExitCode = true
 [mergetool "sourcetree"]
 	cmd = /usr/local/bin/ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
 	trustExitCode = true
+[pull]
+	rebase = preserve

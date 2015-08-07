@@ -1,0 +1,7 @@
+# Shortcuts
+
+alias chrome='open -a "Google Chrome" --args --disable-web-security --allow-file-access-from-files --disable-extensions-http-throttling --allow-file-access --enable-file-cookies'
+alias canary='open -a "Google Chrome Canary" --args --disable-web-security --allow-file-access-from-files --disable-extensions-http-throttling --allow-file-access --enable-file-cookies'
+alias cube.dev='open -a "Google Chrome Canary" http://cube.dev --args --disable-web-security --allow-file-access-from-files --disable-extensions-http-throttling --allow-file-access --enable-file-cookies'
+alias cube.build.chrome='cd ~/src/cube/core; bin/waf distclean configure -p webkit build'
+alias src='cd ~/src'
